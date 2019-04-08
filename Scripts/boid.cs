@@ -11,6 +11,7 @@ public class boid : MonoBehaviour{
     public Vector3 position;
     public int radius;
     public int angle;
+    private boid[] neighbours;
 
     void start(){
         //velocity = transform.forward;
@@ -25,6 +26,10 @@ public class boid : MonoBehaviour{
 
         //transform.position += transform.forward * speed * Time.deltaTime;
 
+    }
+
+    boid[] getNeighbours(){
+        return neighbours;
     }
 
 
