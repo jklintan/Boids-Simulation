@@ -7,10 +7,13 @@ public class boidFlock : MonoBehaviour{
     //This script is used to simulate the boids flocking behaviour
     //Alignment, separation and cohesion
 
-    public int numbOfBoids = 100; //Set the number of boids objects simulated
+    public int numbOfBoids = 5; //Set the number of boids objects simulated
     public boid[] dataBoids;
     public GameObject[] theBoids;
     public float radius;
+
+    private float speed = 2.0f;
+    
 
     //Set the object to be used as boids
     public GameObject boidPrefab;
@@ -23,22 +26,40 @@ public class boidFlock : MonoBehaviour{
         dataBoids = new boid[numbOfBoids];
         
         //initialize the boids
-        for (int i = 0; i < numbOfBoids - 1; i++) {
+        for (int i = 0; i < numbOfBoids; i++) {
             
             //Make a random position for each boid to start at, (OBS inside spawn radius)
             Vector3 newPosition = random_vector();
 
-            //Instantiate the boids as game objects and add to array
+            //Instantiate the boids as game objects and add to array, also convert to boids and store
             GameObject b = Instantiate(boidPrefab, newPosition, Quaternion.identity) as GameObject;
+            b.gameObject.name = "Boid " + (i+1);
             theBoids[i] = b;
+            boid boid = b.GetComponent(typeof(boid)) as boid;
+            dataBoids[i] = boid;
         }
+
+
        
 
     }
 
     // Update is called once per frame
     void Update(){
-        
+        //var currentPosition = transform.position;
+        //var currentRotation = transform.rotation;
+        //var velocity = (1, 1, 1);
+        //// Moves forawrd.
+
+        //boid[] boids = FindObjectsOfType(typeof(boid)) as boid[];
+
+        //Update the positions for every boid
+        for (int i = 0; i < numbOfBoids; i++){
+            dataBoids[i].transform.position += transform.forward * speed * Time.deltaTime;
+            //dataBoids[i].transform.position += transform.forward * speed * Time.deltaTime;
+
+        }
+
     }
 
     void initializeBoids(){

@@ -1,20 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class boid : MonoBehaviour{
 
     //Each boid needs, a direction, a velocity, a sphere to check other flockmates (radius and angle)
-    public float speed;
-    public Vector3 direction;
+    private float speed = 2.0f;
+    public Vector3 velocity;
     public Vector3 position;
     public int radius;
     public int angle;
 
-    ////Constructor
-    //boid(){
-    //    direction = new Vector3(0, 0, 0);
-    //    position = new Vector3(0, 0, 0);
-    //}
+    void start(){
+        //velocity = transform.forward;
+    }
+
+    void update(){
+        Vector3 n = new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f));
+        //this.transform.Translate(n*Time.deltaTime);
+        //Separation
+        //Alignment
+        //Cohesion
+
+        //transform.position += transform.forward * speed * Time.deltaTime;
+
+    }
+
 
 }
